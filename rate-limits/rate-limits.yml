@@ -1,0 +1,35 @@
+name: LayerZero API Rate Limits
+description: LayerZero does not publicly document specific rate limits for its REST APIs. The Scan API (message tracking) is publicly accessible without authentication and has no published throttling thresholds. The Value Transfer API and OFT API require an API key obtained from LayerZero directly; rate limits for authenticated endpoints are provisioned as part of the key agreement and not disclosed publicly. Developers should implement exponential backoff and contact LayerZero via Discord or their developer portal for production rate limit details.
+url: https://docs.layerzero.network/v2/tools/overview
+created: "2026-06-13"
+modified: "2026-06-13"
+rateLimits:
+  - api: LayerZero Scan API (Mainnet)
+    baseURL: https://scan.layerzero-api.com/v1
+    authentication: None
+    rateLimit: Not publicly documented
+    pagination: Cursor-based via nextToken parameter; default limit 100 per request
+    notes: The Scan API uses cursor-based pagination. Default page size is 100 records. The nextToken field in responses should be passed as a query parameter in subsequent requests to retrieve the next set of results.
+  - api: LayerZero Scan API (Testnet)
+    baseURL: https://scan-testnet.layerzero-api.com/v1
+    authentication: None
+    rateLimit: Not publicly documented
+    pagination: Cursor-based via nextToken parameter; default limit 100 per request
+    notes: Same pagination model as mainnet. Intended for development and testing only.
+  - api: LayerZero Value Transfer API
+    baseURL: https://transfer.layerzero-api.com/v1
+    authentication: API key via x-api-key header (required for quotes, build-user-steps, submit-signature, status)
+    rateLimit: Not publicly documented; provisioned per API key agreement
+    pagination: Cursor-based via pagination[nextToken] parameter
+    notes: Discovery endpoints (chains, tokens, metadata) are unauthenticated. All transfer and quote endpoints require API key. Contact LayerZero for rate limit details specific to your API key.
+  - api: LayerZero OFT Transfer API
+    baseURL: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+    authentication: API key via x-layerzero-api-key header
+    rateLimit: Not publicly documented
+    notes: Experimental API. Rate limits subject to change. Not yet available for general release; requires direct engagement with LayerZero team.
+recommendedPractices:
+  - Implement exponential backoff with jitter for all API calls
+  - Use pagination tokens to retrieve large datasets in batches of 100
+  - Cache chain and token discovery responses to minimize API calls
+  - Monitor for HTTP 429 (Too Many Requests) responses and back off accordingly
+  - Contact LayerZero on Discord (https://discord.gg/layerzero) for production rate limit provisioning

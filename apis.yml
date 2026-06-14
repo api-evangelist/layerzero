@@ -1,0 +1,133 @@
+name: LayerZero
+description: LayerZero is an omnichain interoperability protocol that enables seamless cross-chain messaging, token transfers, and OApp/OFT deployments across 90+ blockchains. It provides REST APIs for querying cross-chain message status, estimating fees, tracking OFT deployments, and executing value transfers across 150+ supported chains.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Blockchain
+  - Cross-Chain
+  - Omnichain
+  - Interoperability
+  - Web3
+  - DeFi
+  - Messaging
+  - Token Transfers
+apis:
+  - name: LayerZero Scan API
+    description: The LayerZero Scan API provides programmatic access to cross-chain message data, enabling developers to build custom dashboards, monitoring scripts, and analytics tools. Query messages by GUID, pathway, wallet address, transaction hash, or status across all supported chains.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+    baseURL: https://scan.layerzero-api.com/v1
+    tags:
+      - Cross-Chain Messages
+      - Transaction Tracking
+      - Message Status
+      - Block Explorer
+    properties:
+      - type: Documentation
+        url: https://docs.layerzero.network/v2/tools/overview
+      - type: OpenAPI
+        url: https://docs.layerzero.network/openapi/scan-mainnet.json
+      - type: Explorer
+        url: https://layerzeroscan.com/
+      - type: Swagger
+        url: https://scan.layerzero-api.com/v1/swagger
+    contact:
+      - FN: LayerZero Support
+        url: https://discord.gg/layerzero
+        email: ""
+  - name: LayerZero Scan API (Testnet)
+    description: Testnet version of the LayerZero Scan API, providing the same cross-chain message query capabilities against testnet deployments for development and testing purposes.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.layerzero.network/v2/tools/api/scan/testnet
+    baseURL: https://scan-testnet.layerzero-api.com/v1
+    tags:
+      - Cross-Chain Messages
+      - Testnet
+      - Transaction Tracking
+      - Message Status
+    properties:
+      - type: Documentation
+        url: https://docs.layerzero.network/v2/tools/overview
+      - type: OpenAPI
+        url: https://docs.layerzero.network/openapi/scan-testnet.json
+    contact:
+      - FN: LayerZero Support
+        url: https://discord.gg/layerzero
+        email: ""
+  - name: LayerZero Value Transfer API
+    description: A unified REST API interface for cross-chain value transfers across 150+ blockchains. Supports EVM and non-EVM chains including Solana. Provides chain and token discovery, quote generation, transfer execution steps, signature submission for intent-based routes, and transfer status tracking. Requires API key from LayerZero team for quote and transfer endpoints.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.layerzero.network/v2/developers/value-transfer-api
+    baseURL: https://transfer.layerzero-api.com/v1
+    tags:
+      - Value Transfer
+      - Cross-Chain
+      - Token Bridges
+      - Quotes
+      - Fee Estimation
+    properties:
+      - type: Documentation
+        url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+      - type: OpenAPI
+        url: https://docs.layerzero.network/openapi/vt-api.json
+      - type: Authentication
+        url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+    contact:
+      - FN: LayerZero Support
+        url: https://discord.gg/layerzero
+        email: ""
+  - name: LayerZero OFT Transfer API
+    description: An experimental REST API for discovering and transferring Omnichain Fungible Tokens (OFTs) across chains. Enables listing all available OFTs with their cross-chain deployments and creating OFT transfer transactions between supported chains. Requires x-layerzero-api-key authentication header.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.layerzero.network/v2/tools/api/oft-examples
+    baseURL: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+    tags:
+      - OFT
+      - Token Transfers
+      - Omnichain Fungible Token
+      - Cross-Chain
+    properties:
+      - type: Documentation
+        url: https://docs.layerzero.network/v2/tools/api/oft-examples
+      - type: OpenAPI
+        url: https://docs.layerzero.network/openapi/oft-mainnet.json
+      - type: Authentication
+        url: https://docs.layerzero.network/v2/tools/api/oft-reference
+    contact:
+      - FN: LayerZero Support
+        url: https://discord.gg/layerzero
+        email: ""
+common:
+  - type: Website
+    url: https://layerzero.network/
+  - type: Documentation
+    url: https://docs.layerzero.network/v2
+  - type: GitHub
+    url: https://github.com/LayerZero-Labs
+  - type: GitHub Repository
+    url: https://github.com/LayerZero-Labs/devtools
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Discord
+    url: https://discord.gg/layerzero
+  - type: Twitter
+    url: https://x.com/LayerZero_Core
+  - type: Blog
+    url: https://layerzero.network/blog
+  - type: Whitepaper
+    url: https://layerzero.network/whitepaper
+  - type: Changelog
+    url: https://docs.layerzero.network/v2/developers/changelog
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/finops/finops.yml
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com

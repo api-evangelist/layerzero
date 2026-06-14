@@ -1,0 +1,37 @@
+name: LayerZero API Plans
+description: LayerZero provides its core Scan API (message tracking) and chain/token discovery endpoints of the Value Transfer API without authentication. Production use of quote generation, transfer execution, and OFT transfer endpoints requires an API key obtained directly from the LayerZero team. There are no publicly documented paid tiers — access is provisioned on a per-project basis.
+url: https://layerzero.network/
+created: "2026-06-13"
+modified: "2026-06-13"
+plans:
+  - name: Free (No Auth)
+    description: Public endpoints available without an API key. Includes LayerZero Scan API for message tracking, and Value Transfer API discovery endpoints for chains, tokens, and metadata. Suitable for read-only monitoring and exploratory integrations.
+    url: https://docs.layerzero.network/v2/tools/overview
+    price: Free
+    rateLimits:
+      - requests: Unspecified
+        period: Not publicly documented
+    endpoints:
+      - GET https://scan.layerzero-api.com/v1/messages/latest
+      - GET https://scan.layerzero-api.com/v1/messages/pathway/{pathwayId}
+      - GET https://scan-testnet.layerzero-api.com/v1/messages/latest
+      - GET https://transfer.layerzero-api.com/v1/chains
+      - GET https://transfer.layerzero-api.com/v1/tokens
+      - GET https://transfer.layerzero-api.com/v1/metadata
+    authentication: None
+  - name: API Key Access
+    description: Authenticated access to the Value Transfer API (quotes, transfer execution, signature submission, status) and the OFT Transfer API. API key must be requested from the LayerZero team. Intended for production integrations and DeFi applications requiring cross-chain transfer functionality.
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api
+    price: Contact LayerZero
+    rateLimits:
+      - requests: Unspecified
+        period: Not publicly documented
+    endpoints:
+      - POST https://transfer.layerzero-api.com/v1/quotes
+      - POST https://transfer.layerzero-api.com/v1/build-user-steps
+      - POST https://transfer.layerzero-api.com/v1/submit-signature
+      - GET https://transfer.layerzero-api.com/v1/status/{quoteId}
+      - GET https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/list
+      - GET https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/transfer
+    authentication: API Key via x-api-key or x-layerzero-api-key header
+    contact: https://discord.gg/layerzero

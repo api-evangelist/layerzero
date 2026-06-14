@@ -1,0 +1,45 @@
+name: LayerZero API FinOps
+description: LayerZero does not charge fees for REST API access to its Scan and Value Transfer APIs. The primary cost model for LayerZero is protocol-level messaging fees paid on-chain when sending cross-chain messages or OFT transfers. These fees consist of native gas costs on the source chain, DVN (Decentralized Verifier Network) fees, and executor fees for message delivery on the destination chain. Fee estimation is available via the quoteSend and quote functions on LayerZero Endpoint smart contracts, and through the /quotes endpoint of the Value Transfer REST API.
+url: https://docs.layerzero.network/v2/developers/evm/configuration/gas-fees
+created: "2026-06-13"
+modified: "2026-06-13"
+costModel: Protocol fee per message (on-chain); REST API access is free
+costComponents:
+  - name: Source Chain Gas
+    description: Native gas paid on the source blockchain to initiate the cross-chain message or token transfer. Varies by chain and network congestion.
+    unit: Native token (ETH, BNB, MATIC, etc.)
+    pricing: Market rate — variable
+  - name: DVN Fee
+    description: Fee paid to Decentralized Verifier Networks (DVNs) responsible for verifying the cross-chain message between source and destination. Configurable per OApp via the DVN configuration.
+    unit: Native token on source chain
+    pricing: Variable; determined by DVN operator pricing
+  - name: Executor Fee
+    description: Fee for the executor service that delivers and executes the message on the destination chain. Covers destination chain gas costs plus executor markup.
+    unit: Native token on source chain
+    pricing: Variable; estimated via quoteSend() or REST API /quotes endpoint
+  - name: REST API Access
+    description: No fee for accessing LayerZero REST APIs (Scan API, Value Transfer API, OFT API). API key for authenticated endpoints is provisioned without a subscription fee — contact LayerZero team for access.
+    unit: N/A
+    pricing: Free
+feeEstimation:
+  - method: REST API
+    endpoint: POST https://transfer.layerzero-api.com/v1/quotes
+    description: Returns a complete fee quote for a cross-chain transfer including all DVN, executor, and gas cost breakdowns. Requires API key.
+    authentication: x-api-key header required
+  - method: Smart Contract
+    function: quoteSend()
+    description: On-chain fee estimation via the LayerZero Endpoint contract. Returns MessagingFee struct with nativeFee and lzTokenFee components.
+    documentation: https://docs.layerzero.network/v2/developers/evm/configuration/gas-fees
+  - method: Smart Contract
+    function: ILayerZeroEndpoint.estimateFees()
+    description: V1 fee estimation method. Accepts destination chainId, user application address, and payload to return dynamic fee based on current Oracle and Relayer prices.
+    documentation: https://docs.layerzero.network/v1/developers/evm/evm-guides/advanced/estimating-message-fees
+zroToken:
+  description: ZRO is the LayerZero governance and protocol token. Future protocol fee mechanisms may involve ZRO. Monitor governance proposals for fee structure changes.
+  url: https://layerzero.network/
+costOptimizationTips:
+  - Use the /quotes endpoint to compare fee estimates before executing transfers
+  - Select cost-efficient DVN configurations for your OApp to reduce verification fees
+  - Batch messages where possible to amortize fixed overhead costs
+  - Monitor gas prices on source and destination chains to time transfers during low-congestion periods
+  - Cache chain and token discovery API responses locally to avoid redundant REST API calls
