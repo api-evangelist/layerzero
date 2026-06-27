@@ -107,7 +107,7 @@ common:
     url: https://docs.layerzero.network/v2
   - type: GitHub
     url: https://github.com/LayerZero-Labs
-  - type: GitHub Repository
+  - type: GitHubRepository
     url: https://github.com/LayerZero-Labs/devtools
   - type: Explorer
     url: https://layerzeroscan.com/
@@ -119,7 +119,7 @@ common:
     url: https://layerzero.network/blog
   - type: Whitepaper
     url: https://layerzero.network/whitepaper
-  - type: Changelog
+  - type: ChangeLog
     url: https://docs.layerzero.network/v2/developers/changelog
   - type: Plans
     url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/plans/plans.yml

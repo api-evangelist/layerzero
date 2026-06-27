@@ -2,13 +2,13 @@
   "repo": "layerzero",
   "feeds": [
     {
-      "source": "https://x.com/LayerZero_Core",
-      "feed_url": "https://x.com/LayerZero_Core",
-      "title": "",
+      "source": "https://layerzero.network/blog",
+      "feed_url": "",
       "saved": 0,
-      "method": "none"
+      "method": "agent-scrape"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:51:39Z",
+  "agent_pulled": "2026-06-27"
 }
