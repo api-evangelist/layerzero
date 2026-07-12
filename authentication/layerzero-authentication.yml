@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/vt-api.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API key for authenticating requests. Required for /quotes, /build-user-steps,
+    /submit-signature, and /status endpoints.
+  sources:
+  - openapi/vt-api.json
