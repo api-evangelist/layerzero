@@ -101,6 +101,8 @@ apis:
         url: https://discord.gg/layerzero
         email: ""
 common:
+  - type: AgenticAccess
+    url: agentic-access/layerzero-agentic-access.yml
   - type: DomainSecurity
     url: security/layerzero-domain-security.yml
   - type: Authentication
