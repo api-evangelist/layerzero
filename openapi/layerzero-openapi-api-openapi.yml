@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: LayerZero OFT Transfer Discovery openapi API
+  version: 1.0.0
+  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+servers:
+- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+tags:
+- name: openapi
+paths:
+  /openapi:
+    get:
+      description: OpenAPI specs.
+      tags:
+      - openapi
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  openapi:
+                    type: string
+                    example: 3.0.3
+                    description: OpenAPI version
+                  info:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: Scan API
+                        description: API title
+                      version:
+                        type: string
+                        example: 1.0.0
+                        description: API version
+                    required:
+                    - title
+                    - version
+                  servers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+                          description: Server URL
+                      required:
+                      - url
+                  paths:
+                    type: object
+                    additionalProperties:
+                      type: object
+                required:
+                - openapi
+                - info

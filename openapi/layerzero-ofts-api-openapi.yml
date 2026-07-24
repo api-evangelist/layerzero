@@ -1,0 +1,412 @@
+openapi: 3.0.3
+info:
+  title: LayerZero OFT Transfer Discovery ofts API
+  version: 1.0.0
+  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+servers:
+- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+tags:
+- name: ofts
+paths:
+  /list:
+    get:
+      description: Get list of available OFTs with their deployments across chains
+      tags:
+      - ofts
+      parameters:
+      - in: query
+        name: chainNames
+        description: Comma-separated list of chain names to filter by
+        schema:
+          type: string
+          description: Comma-separated list of chain names to filter by
+          example: ethereum,arbitrum,optimism,base
+      - in: query
+        name: symbols
+        description: Comma-separated list of token symbols to filter by
+        schema:
+          type: string
+          description: Comma-separated list of token symbols to filter by
+          example: ZRO,USDT0,XAUT0,WBTC
+      - in: query
+        name: protocols
+        description: Comma-separated list of protocol names to filter by
+        schema:
+          type: string
+          description: Comma-separated list of protocol names to filter by
+          example: wBTC,ZRO Token,USDT0
+      - in: query
+        name: contractAddresses
+        description: Comma-separated list of contract addresses to filter by
+        schema:
+          type: string
+          description: Comma-separated list of contract addresses to filter by
+          example: 0x6985884c4392d348587b19cb9eaaf157f13271cd,0x6c96de32cea08842dcc4058c14d3aaad7fa41dee
+      responses:
+        '200':
+          description: Successfully retrieved OFT list
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      sharedDecimals:
+                        type: number
+                      endpointVersion:
+                        type: string
+                        enum:
+                        - v1
+                        - v2
+                      deployments:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                            localDecimals:
+                              type: number
+                            type:
+                              type: string
+                              enum:
+                              - OFT
+                              - OFT_ADAPTER
+                              - NATIVE_OFT_ADAPTER
+                            innerToken:
+                              type: string
+                            approvalRequired:
+                              type: boolean
+                            details:
+                              type: object
+                              additionalProperties: {}
+                          required:
+                          - address
+                          - localDecimals
+                          - type
+                    required:
+                    - name
+                    - sharedDecimals
+                    - endpointVersion
+                    - deployments
+                description: Record of token symbols to their OFT configurations
+                example:
+                  ZRO:
+                  - name: ZRO Token
+                    sharedDecimals: 6
+                    endpointVersion: v2
+                    deployments:
+                      ethereum:
+                        address: '0x6985884c4392d348587b19cb9eaaf157f13271cd'
+                        localDecimals: 18
+                        type: OFT
+                      arbitrum:
+                        address: '0x6985884c4392d348587b19cb9eaaf157f13271cd'
+                        localDecimals: 18
+                        type: OFT
+                      optimism:
+                        address: '0x6985884c4392d348587b19cb9eaaf157f13271cd'
+                        localDecimals: 18
+                        type: OFT
+                      base:
+                        address: '0x6985884c4392d348587b19cb9eaaf157f13271cd'
+                        localDecimals: 18
+                        type: OFT
+  /transfer:
+    get:
+      description: Create an OFT transfer transaction between chains
+      tags:
+      - ofts
+      parameters:
+      - in: query
+        name: srcChainName
+        description: Source chain name where the OFT transfer originates
+        schema:
+          type: string
+          description: Source chain name where the OFT transfer originates
+          example: ethereum
+        required: true
+      - in: query
+        name: dstChainName
+        description: Destination chain name where the OFT will be received
+        schema:
+          type: string
+          description: Destination chain name where the OFT will be received
+          example: bera
+        required: true
+      - in: query
+        name: oftAddress
+        description: Address of the OFT contract on the source chain
+        schema:
+          type: string
+          description: Address of the OFT contract on the source chain
+          example: '0x6c96de32cea08842dcc4058c14d3aaad7fa41dee'
+        required: true
+      - in: query
+        name: amount
+        description: Amount to transfer in the smallest unit (wei/satoshi equivalent)
+        schema:
+          type: string
+          description: Amount to transfer in the smallest unit (wei/satoshi equivalent)
+          example: '1000000'
+        required: true
+      - in: query
+        name: from
+        description: Address of the sender wallet
+        schema:
+          type: string
+          description: Address of the sender wallet
+          example: '0xd8538FA8FDd5872E68c4040449F64452ae536fA6'
+        required: true
+      - in: query
+        name: to
+        description: Address of the recipient wallet (EVM hex or Solana base58)
+        schema:
+          type: string
+          description: Address of the recipient wallet (EVM hex or Solana base58)
+          example: '0xd8538FA8FDd5872E68c4040449F64452ae536fA6'
+        required: true
+      - in: query
+        name: validate
+        description: Whether to validate balances before creating transaction
+        schema:
+          anyOf:
+          - type: boolean
+          - type: string
+          description: Whether to validate balances before creating transaction
+          example: false
+      - in: query
+        name: options
+        description: 'Structured LayerZero execution options as JSON string. EXECUTOR OPTIONS: - lzReceive: Set gas limit and optional native drop for lzReceive execution - nativeDrops: Array of native token drops to specific addresses - composeOptions: Array of compose message execution settings with gas and native drop All numeric values for gas limits and native drops should be strings or numbers. Native drop amounts are in wei (e.g., "1000000000000000" = 0.001 ETH).'
+        schema:
+          type: string
+          description: 'Structured LayerZero execution options as JSON string. EXECUTOR OPTIONS: - lzReceive: Set gas limit and optional native drop for lzReceive execution - nativeDrops: Array of native token drops to specific addresses - composeOptions: Array of compose message execution settings with gas and native drop All numeric values for gas limits and native drops should be strings or numbers. Native drop amounts are in wei (e.g., "1000000000000000" = 0.001 ETH).'
+          example: '{"executor":{"lzReceive":{"gasLimit":300000},"nativeDrops":[{"amount":"1","receiver":"0xd8538fa8fdd5872e68c4040449f64452ae536fa6"}]}}'
+      - in: query
+        name: composeMsg
+        description: Compose message for advanced OFT operations (hex encoded)
+        schema:
+          type: string
+          description: Compose message for advanced OFT operations (hex encoded)
+          example: 0x
+      - in: query
+        name: oftCmd
+        description: OFT command for advanced operations (hex encoded)
+        schema:
+          type: string
+          description: OFT command for advanced operations (hex encoded)
+          example: 0x
+      - in: header
+        name: x-layerzero-api-key
+        description: LayerZero API key for authentication
+        schema:
+          type: string
+          description: LayerZero API key for authentication
+          example: c017d03d-5860-4b33-aeff-92e7bccb5d87
+      responses:
+        '200':
+          description: Successfully created OFT transfer transaction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created:
+                    type: number
+                  dstChainName:
+                    type: string
+                  wallet:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                      nonce:
+                        type: number
+                      success:
+                        type: boolean
+                      name:
+                        type: string
+                    required:
+                    - address
+                    - nonce
+                  transactionData:
+                    type: object
+                    properties:
+                      populatedTransaction:
+                        type: object
+                        properties:
+                          to:
+                            type: string
+                          from:
+                            type: string
+                          nonce:
+                            type: number
+                          gasLimit:
+                            type: string
+                          gasPrice:
+                            type: string
+                          data:
+                            type: string
+                          value:
+                            type: string
+                          chainId:
+                            type: number
+                          type:
+                            type: number
+                          accessList: {}
+                          maxPriorityFeePerGas:
+                            type: string
+                          maxFeePerGas:
+                            type: string
+                          customData:
+                            type: object
+                            additionalProperties: {}
+                          ccipReadEnabled:
+                            type: boolean
+                      inflightTransactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            txHash:
+                              type: string
+                            signedTransaction:
+                              type: string
+                            gasPrice:
+                              type: string
+                            maxPriorityFeePerGas:
+                              type: string
+                            maxFeePerGas:
+                              type: string
+                            txType:
+                              anyOf:
+                              - type: number
+                                enum:
+                                - 0
+                              - type: number
+                                enum:
+                                - 2
+                          required:
+                          - txHash
+                          - txType
+                      minedTransactionHash:
+                        type: string
+                      minedTransactionHashes:
+                        type: array
+                        items:
+                          type: string
+                      txHash:
+                        type: string
+                      signedTransaction:
+                        type: string
+                      burnNonceTxIndex:
+                        type: number
+                      approvalTransaction:
+                        type: object
+                        properties:
+                          to:
+                            type: string
+                          from:
+                            type: string
+                          nonce:
+                            type: number
+                          gasLimit:
+                            type: string
+                          gasPrice:
+                            type: string
+                          data:
+                            type: string
+                          value:
+                            type: string
+                          chainId:
+                            type: number
+                          type:
+                            type: number
+                          accessList: {}
+                          maxPriorityFeePerGas:
+                            type: string
+                          maxFeePerGas:
+                            type: string
+                          customData:
+                            type: object
+                            additionalProperties: {}
+                          ccipReadEnabled:
+                            type: boolean
+                  dstTxError:
+                    type: string
+                  nextInlineSince:
+                    type: number
+                  transactionType:
+                    type: string
+                  metadata:
+                    type: object
+                    properties:
+                      properties:
+                        type: object
+                        additionalProperties: {}
+                      remoteChainName:
+                        type: string
+                      timestamps:
+                        type: object
+                        properties:
+                          created:
+                            type: number
+                          nonceAcquired:
+                            type: number
+                          signed:
+                            type: number
+                          sent:
+                            type: number
+                          mined:
+                            type: object
+                            properties:
+                              serverTs:
+                                type: number
+                              blockNum:
+                                type: number
+                              blockTs:
+                                type: number
+                            required:
+                            - serverTs
+                            - blockTs
+                          confirmed:
+                            type: number
+                      sendCount:
+                        type: number
+                  parallelizingKey:
+                    type: string
+                required:
+                - created
+                - dstChainName
+                - transactionData
+                description: Transaction object ready for signing and submission
+                example:
+                  created: 1750332889266
+                  dstChainName: ethereum
+                  metadata:
+                    properties:
+                      dstOftAddress: '0x3dc96399109df5ceb2c226664a086140bd0379cb'
+                      dstOftType: OFT_ADAPTER
+                      dstChainName: bera
+                      approvalRequired: true
+                      amount: '1000000'
+                      sharedDecimals: 6
+                      localDecimals: 6
+                    timestamps:
+                      created: 1750332889266
+                  transactionData:
+                    populatedTransaction:
+                      data: '0xc7c7f5b30000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000007625075988a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000d8538fa8fdd5872e68c4040449f64452ae536fa6000000000000000000000000000000000000000000000000000000000000769a000000000000000000000000d8538fa8fdd5872e68c4040449f64452ae536fa600000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000000f424000000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+                      to: '0x6C96dE32CEa08842dcc4058c14d3aaAD7Fa41dee'
+                      gasLimit: '500000'
+                      value: '8118838073482'
+                    approvalTransaction:
+                      data: '0x095ea7b30000000000000000000000006c96de32cea08842dcc4058c14d3aaad7fa41dee00000000000000000000000000000000000000000000000000000000000f4240'
+                      to: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                      gasLimit: '100000'
+                  transactionType: OFT_SEND

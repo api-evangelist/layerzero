@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: LayerZero OFT Transfer Discovery API
+  version: 1.0.0
+  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+servers:
+- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+tags:
+- name: Discovery
+paths:
+  /tokens:
+    get:
+      summary: List supported tokens
+      description: Returns a paginated list of tokens supported by the Value Transfer API. Use optional filters to narrow down results by chain or source token.
+      tags:
+      - Discovery
+      parameters:
+      - name: transferrableFromChainKey
+        in: query
+        description: Filter tokens by source chain (for example, 'ethereum', 'arbitrum')
+        schema:
+          type: string
+          example: ethereum
+      - name: transferrableFromTokenAddress
+        in: query
+        description: Filter by source token address
+        schema:
+          type: string
+          example: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+      responses:
+        '200':
+          description: Successfully retrieved token list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        isSupported:
+                          type: boolean
+                        chainKey:
+                          type: string
+                        address:
+                          type: string
+                        decimals:
+                          type: number
+                        symbol:
+                          type: string
+                        name:
+                          type: string
+                  pagination:
+                    type: object
+                    properties:
+                      nextToken:
+                        type: string
+                example:
+                  tokens:
+                  - isSupported: true
+                    chainKey: ethereum
+                    address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+                    decimals: 18
+                    symbol: ETH
+                    name: Ethereum
+                  pagination: {}
+  /chains:
+    get:
+      summary: List supported chains
+      description: Returns all chains supported by the Value Transfer API, including chain type and native currency information.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Successfully retrieved chain list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chains:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        shortName:
+                          type: string
+                        chainKey:
+                          type: string
+                        chainType:
+                          type: string
+                        chainId:
+                          type: number
+                  pagination:
+                    type: object
+                    properties:
+                      nextToken:
+                        type: string
+                example:
+                  chains:
+                  - name: Ethereum
+                    shortName: ETH
+                    chainKey: ethereum
+                    chainType: EVM
+                    chainId: 1
+                  - name: Arbitrum
+                    shortName: ARB
+                    chainKey: arbitrum
+                    chainType: EVM
+                    chainId: 42161
+                  - name: Solana
+                    shortName: SOL
+                    chainKey: solana
+                    chainType: SOLANA
+                    chainId: 0
+                  pagination: {}
+  /metadata:
+    get:
+      summary: Get deployment metadata
+      description: Returns deployment addresses for multicall and transfer delegate contracts by chain. Use this to look up the correct contract addresses for building transactions or verifying approvals.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Successfully retrieved deployment metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    deployments:
+                      type: object
+                      properties:
+                        multicall:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: Contract address of the multicall (fee wrapper)
+                        transferDelegate:
+                          type: object
+                          properties:
+                            address:
+                              type: string
+                              description: Contract address of the transfer delegate (token spender)
+                example:
+                  base:
+                    deployments:
+                      multicall:
+                        address: '0x0564F89f6edf2cA62fBd174378f9187e447DD410'
+                      transferDelegate:
+                        address: '0xf45722F37f602c0788Beb7C1471ebEB281308860'
+                  ethereum:
+                    deployments:
+                      multicall:
+                        address: '0xFD268A4813005A9fb04982073E5f4916f8653B75'
+                      transferDelegate:
+                        address: '0x0CD0aD832f06b05f8fE78E6DB825c3d4eA944004'
+                  arbitrum:
+                    deployments:
+                      multicall:
+                        address: '0x26F97eb05469fF5d2169FD4d83cF96939C9B8e37'
+                      transferDelegate:
+                        address: '0x43093Bb72d982C04DFb858Fd31a85fBcB6c13CBD'
