@@ -1,6 +1,19 @@
 name: LayerZero
 description: LayerZero is an omnichain interoperability protocol that enables seamless cross-chain messaging, token transfers, and OApp/OFT deployments across 90+ blockchains. It provides REST APIs for querying cross-chain message status, estimating fees, tracking OFT deployments, and executing value transfers across 150+ supported chains.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/layerzero.png
 url: https://raw.githubusercontent.com/api-evangelist/layerzero/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -15,91 +28,126 @@ tags:
   - Messaging
   - Token Transfers
 apis:
-  - name: LayerZero Scan API
-    description: The LayerZero Scan API provides programmatic access to cross-chain message data, enabling developers to build custom dashboards, monitoring scripts, and analytics tools. Query messages by GUID, pathway, wallet address, transaction hash, or status across all supported chains.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
-    baseURL: https://scan.layerzero-api.com/v1
-    tags:
-      - Cross-Chain Messages
-      - Transaction Tracking
-      - Message Status
-      - Block Explorer
-    properties:
-      - type: Documentation
-        url: https://docs.layerzero.network/v2/tools/overview
-      - type: OpenAPI
-        url: https://docs.layerzero.network/openapi/scan-mainnet.json
-      - type: Explorer
-        url: https://layerzeroscan.com/
-      - type: Swagger
-        url: https://scan.layerzero-api.com/v1/swagger
-    contact:
-      - FN: LayerZero Support
-        url: https://discord.gg/layerzero
-        email: ""
-  - name: LayerZero Scan API (Testnet)
-    description: Testnet version of the LayerZero Scan API, providing the same cross-chain message query capabilities against testnet deployments for development and testing purposes.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.layerzero.network/v2/tools/api/scan/testnet
-    baseURL: https://scan-testnet.layerzero-api.com/v1
-    tags:
-      - Cross-Chain Messages
-      - Testnet
-      - Transaction Tracking
-      - Message Status
-    properties:
-      - type: Documentation
-        url: https://docs.layerzero.network/v2/tools/overview
-      - type: OpenAPI
-        url: https://docs.layerzero.network/openapi/scan-testnet.json
-    contact:
-      - FN: LayerZero Support
-        url: https://discord.gg/layerzero
-        email: ""
-  - name: LayerZero Value Transfer API
-    description: A unified REST API interface for cross-chain value transfers across 150+ blockchains. Supports EVM and non-EVM chains including Solana. Provides chain and token discovery, quote generation, transfer execution steps, signature submission for intent-based routes, and transfer status tracking. Requires API key from LayerZero team for quote and transfer endpoints.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.layerzero.network/v2/developers/value-transfer-api
-    baseURL: https://transfer.layerzero-api.com/v1
-    tags:
-      - Value Transfer
-      - Cross-Chain
-      - Token Bridges
-      - Quotes
-      - Fee Estimation
-    properties:
-      - type: Documentation
-        url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
-      - type: OpenAPI
-        url: https://docs.layerzero.network/openapi/vt-api.json
-      - type: Authentication
-        url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
-    contact:
-      - FN: LayerZero Support
-        url: https://discord.gg/layerzero
-        email: ""
-  - name: LayerZero OFT Transfer API
-    description: An experimental REST API for discovering and transferring Omnichain Fungible Tokens (OFTs) across chains. Enables listing all available OFTs with their cross-chain deployments and creating OFT transfer transactions between supported chains. Requires x-layerzero-api-key authentication header.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.layerzero.network/v2/tools/api/oft-examples
-    baseURL: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
-    tags:
-      - OFT
-      - Token Transfers
-      - Omnichain Fungible Token
-      - Cross-Chain
-    properties:
-      - type: Documentation
-        url: https://docs.layerzero.network/v2/tools/api/oft-examples
-      - type: OpenAPI
-        url: https://docs.layerzero.network/openapi/oft-mainnet.json
-      - type: Authentication
-        url: https://docs.layerzero.network/v2/tools/api/oft-reference
-    contact:
-      - FN: LayerZero Support
-        url: https://discord.gg/layerzero
-        email: ""
+- aid: layerzero:layerzero-discovery-api
+  name: LayerZero Discovery API
+  description: The Discovery API from LayerZero — 3 operation(s) for discovery.
+  humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+  baseURL: https://scan.layerzero-api.com/v1
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/layerzero-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/overview
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Swagger
+    url: https://scan.layerzero-api.com/v1/swagger
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/api/oft-examples
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/tools/api/oft-reference
+- aid: layerzero:layerzero-messages-api
+  name: LayerZero messages API
+  description: The messages API from LayerZero — 7 operation(s) for messages.
+  humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+  baseURL: https://scan.layerzero-api.com/v1
+  tags:
+  - messages
+  properties:
+  - type: OpenAPI
+    url: openapi/layerzero-messages-api-openapi.yml
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/overview
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Swagger
+    url: https://scan.layerzero-api.com/v1/swagger
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/api/oft-examples
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/tools/api/oft-reference
+- aid: layerzero:layerzero-ofts-api
+  name: LayerZero ofts API
+  description: The ofts API from LayerZero — 2 operation(s) for ofts.
+  humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+  baseURL: https://scan.layerzero-api.com/v1
+  tags:
+  - ofts
+  properties:
+  - type: OpenAPI
+    url: openapi/layerzero-ofts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/overview
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Swagger
+    url: https://scan.layerzero-api.com/v1/swagger
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/api/oft-examples
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/tools/api/oft-reference
+- aid: layerzero:layerzero-openapi-api
+  name: LayerZero openapi API
+  description: The openapi API from LayerZero — 1 operation(s) for openapi.
+  humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+  baseURL: https://scan.layerzero-api.com/v1
+  tags:
+  - openapi
+  properties:
+  - type: OpenAPI
+    url: openapi/layerzero-openapi-api-openapi.yml
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/overview
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Swagger
+    url: https://scan.layerzero-api.com/v1/swagger
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/api/oft-examples
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/tools/api/oft-reference
+- aid: layerzero:layerzero-transfer-api
+  name: LayerZero Transfer API
+  description: The Transfer API from LayerZero — 4 operation(s) for transfer.
+  humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
+  baseURL: https://scan.layerzero-api.com/v1
+  tags:
+  - Transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/layerzero-transfer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/overview
+  - type: Explorer
+    url: https://layerzeroscan.com/
+  - type: Swagger
+    url: https://scan.layerzero-api.com/v1/swagger
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/developers/value-transfer-api/api-reference/overview
+  - type: Documentation
+    url: https://docs.layerzero.network/v2/tools/api/oft-examples
+  - type: Authentication
+    url: https://docs.layerzero.network/v2/tools/api/oft-reference
 common:
   - type: AgenticAccess
     url: agentic-access/layerzero-agentic-access.yml
