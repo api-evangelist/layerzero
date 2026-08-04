@@ -1,0 +1,689 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Value Transfer API",
+    "version": "1.0.0",
+    "description": "Unified API for cross-chain value transfers across 150+ blockchains"
+  },
+  "servers": [
+    {
+      "url": "https://transfer.layerzero-api.com/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header",
+        "description": "API key for authenticating requests. Required for /quotes, /build-user-steps, /submit-signature, and /status endpoints."
+      }
+    }
+  },
+  "paths": {
+    "/tokens": {
+      "get": {
+        "summary": "List supported tokens",
+        "description": "Returns a paginated list of tokens supported by the Value Transfer API. Use optional filters to narrow down results by chain or source token.",
+        "tags": [
+          "Discovery"
+        ],
+        "parameters": [
+          {
+            "name": "transferrableFromChainKey",
+            "in": "query",
+            "description": "Filter tokens by source chain (for example, 'ethereum', 'arbitrum')",
+            "schema": {
+              "type": "string",
+              "example": "ethereum"
+            }
+          },
+          {
+            "name": "transferrableFromTokenAddress",
+            "in": "query",
+            "description": "Filter by source token address",
+            "schema": {
+              "type": "string",
+              "example": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved token list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tokens": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "isSupported": {
+                            "type": "boolean"
+                          },
+                          "chainKey": {
+                            "type": "string"
+                          },
+                          "address": {
+                            "type": "string"
+                          },
+                          "decimals": {
+                            "type": "number"
+                          },
+                          "symbol": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "nextToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "tokens": [
+                      {
+                        "isSupported": true,
+                        "chainKey": "ethereum",
+                        "address": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+                        "decimals": 18,
+                        "symbol": "ETH",
+                        "name": "Ethereum"
+                      }
+                    ],
+                    "pagination": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chains": {
+      "get": {
+        "summary": "List supported chains",
+        "description": "Returns all chains supported by the Value Transfer API, including chain type and native currency information.",
+        "tags": [
+          "Discovery"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved chain list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "chains": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "shortName": {
+                            "type": "string"
+                          },
+                          "chainKey": {
+                            "type": "string"
+                          },
+                          "chainType": {
+                            "type": "string"
+                          },
+                          "chainId": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "nextToken": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "chains": [
+                      {
+                        "name": "Ethereum",
+                        "shortName": "ETH",
+                        "chainKey": "ethereum",
+                        "chainType": "EVM",
+                        "chainId": 1
+                      },
+                      {
+                        "name": "Arbitrum",
+                        "shortName": "ARB",
+                        "chainKey": "arbitrum",
+                        "chainType": "EVM",
+                        "chainId": 42161
+                      },
+                      {
+                        "name": "Solana",
+                        "shortName": "SOL",
+                        "chainKey": "solana",
+                        "chainType": "SOLANA",
+                        "chainId": 0
+                      }
+                    ],
+                    "pagination": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metadata": {
+      "get": {
+        "summary": "Get deployment metadata",
+        "description": "Returns deployment addresses for multicall and transfer delegate contracts by chain. Use this to look up the correct contract addresses for building transactions or verifying approvals.",
+        "tags": [
+          "Discovery"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved deployment metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "deployments": {
+                        "type": "object",
+                        "properties": {
+                          "multicall": {
+                            "type": "object",
+                            "properties": {
+                              "address": {
+                                "type": "string",
+                                "description": "Contract address of the multicall (fee wrapper)"
+                              }
+                            }
+                          },
+                          "transferDelegate": {
+                            "type": "object",
+                            "properties": {
+                              "address": {
+                                "type": "string",
+                                "description": "Contract address of the transfer delegate (token spender)"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "base": {
+                      "deployments": {
+                        "multicall": {
+                          "address": "0x0564F89f6edf2cA62fBd174378f9187e447DD410"
+                        },
+                        "transferDelegate": {
+                          "address": "0xf45722F37f602c0788Beb7C1471ebEB281308860"
+                        }
+                      }
+                    },
+                    "ethereum": {
+                      "deployments": {
+                        "multicall": {
+                          "address": "0xFD268A4813005A9fb04982073E5f4916f8653B75"
+                        },
+                        "transferDelegate": {
+                          "address": "0x0CD0aD832f06b05f8fE78E6DB825c3d4eA944004"
+                        }
+                      }
+                    },
+                    "arbitrum": {
+                      "deployments": {
+                        "multicall": {
+                          "address": "0x26F97eb05469fF5d2169FD4d83cF96939C9B8e37"
+                        },
+                        "transferDelegate": {
+                          "address": "0x43093Bb72d982C04DFb858Fd31a85fBcB6c13CBD"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotes": {
+      "post": {
+        "summary": "Get transfer quotes",
+        "description": "Request quotes for a cross-chain transfer. Returns one or more quotes with fees, estimated duration, and transaction steps to execute.",
+        "tags": [
+          "Transfer"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "srcChainKey",
+                  "dstChainKey",
+                  "srcTokenAddress",
+                  "dstTokenAddress",
+                  "srcWalletAddress",
+                  "dstWalletAddress",
+                  "amount"
+                ],
+                "properties": {
+                  "srcChainKey": {
+                    "type": "string",
+                    "description": "Source chain key (for example, 'base', 'arbitrum')",
+                    "example": "base"
+                  },
+                  "dstChainKey": {
+                    "type": "string",
+                    "description": "Destination chain key",
+                    "example": "optimism"
+                  },
+                  "srcTokenAddress": {
+                    "type": "string",
+                    "description": "Source token address (use 0xEeee...EEeE for native ETH)",
+                    "example": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+                  },
+                  "dstTokenAddress": {
+                    "type": "string",
+                    "description": "Destination token address",
+                    "example": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+                  },
+                  "srcWalletAddress": {
+                    "type": "string",
+                    "description": "Sender wallet address",
+                    "example": "0x1234567890123456789012345678901234567890"
+                  },
+                  "dstWalletAddress": {
+                    "type": "string",
+                    "description": "Recipient wallet address",
+                    "example": "0x1234567890123456789012345678901234567890"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "description": "Transfer amount in smallest units (wei for ETH)",
+                    "example": "100000000000000000"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved quotes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "quotes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "feeUsd": {
+                            "type": "string"
+                          },
+                          "feePercent": {
+                            "type": "string"
+                          },
+                          "srcAmount": {
+                            "type": "string"
+                          },
+                          "dstAmount": {
+                            "type": "string"
+                          },
+                          "routeSteps": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "srcChainKey": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "userSteps": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "chainKey": {
+                                  "type": "string"
+                                },
+                                "chainType": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "tokens": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "example": {
+                    "quotes": [
+                      {
+                        "id": "quote_abc123",
+                        "feeUsd": "0.50",
+                        "feePercent": "0.5",
+                        "srcAmount": "100000000000000000",
+                        "dstAmount": "99500000000000000",
+                        "routeSteps": [
+                          {
+                            "type": "STARGATE_V2_TAXI",
+                            "srcChainKey": "base"
+                          }
+                        ],
+                        "userSteps": [
+                          {
+                            "type": "TRANSACTION",
+                            "chainKey": "base",
+                            "chainType": "EVM"
+                          }
+                        ]
+                      }
+                    ],
+                    "tokens": []
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status/{quoteId}": {
+      "get": {
+        "summary": "Check transfer status",
+        "description": "Check the current status of a transfer. Returns the status and an optional LayerZero Scan explorer URL.",
+        "tags": [
+          "Transfer"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "quoteId",
+            "in": "path",
+            "required": true,
+            "description": "The quote ID from the /quotes response",
+            "schema": {
+              "type": "string",
+              "example": "quote_abc123"
+            }
+          },
+          {
+            "name": "txHash",
+            "in": "query",
+            "description": "Optional transaction hash for faster status lookup",
+            "schema": {
+              "type": "string",
+              "example": "0x..."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "PENDING",
+                        "PROCESSING",
+                        "SUCCEEDED",
+                        "FAILED",
+                        "UNKNOWN"
+                      ]
+                    },
+                    "explorerUrl": {
+                      "type": "string"
+                    },
+                    "executionHistory": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "event": {
+                            "type": "string"
+                          },
+                          "transaction": {
+                            "type": "object",
+                            "properties": {
+                              "chainKey": {
+                                "type": "string"
+                              },
+                              "hash": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "status": "SUCCEEDED",
+                    "explorerUrl": "https://layerzeroscan.com/tx/...",
+                    "executionHistory": [
+                      {
+                        "event": "SENT",
+                        "transaction": {
+                          "chainKey": "base",
+                          "hash": "0x..."
+                        }
+                      },
+                      {
+                        "event": "DELIVERED",
+                        "transaction": {
+                          "chainKey": "optimism",
+                          "hash": "0x..."
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submit-signature": {
+      "post": {
+        "summary": "Submit EIP-712 signatures",
+        "description": "Submit signed EIP-712 messages for intent-based transfers (for example, Aori routes). Required when a quote includes SIGNATURE user steps.",
+        "tags": [
+          "Transfer"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "quoteId",
+                  "signatures"
+                ],
+                "properties": {
+                  "quoteId": {
+                    "type": "string",
+                    "description": "The quote ID from the /quotes response",
+                    "example": "quote_abc123"
+                  },
+                  "signatures": {
+                    "type": "array",
+                    "description": "Array of signature hex strings",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "0x..."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signature submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/build-user-steps": {
+      "post": {
+        "summary": "Build transaction steps",
+        "description": "Rebuild or refresh the user steps for a quote. Use this if the original quote's user steps have expired or if you need fresh transaction data (required for Solana).",
+        "tags": [
+          "Transfer"
+        ],
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "quoteId"
+                ],
+                "properties": {
+                  "quoteId": {
+                    "type": "string",
+                    "description": "The quote ID to build steps for",
+                    "example": "quote_abc123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully built user steps",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userSteps": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "chainKey": {
+                            "type": "string"
+                          },
+                          "chainType": {
+                            "type": "string"
+                          },
+                          "signerAddress": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "example": {
+                    "userSteps": [
+                      {
+                        "type": "TRANSACTION",
+                        "description": "bridge",
+                        "chainKey": "solana",
+                        "chainType": "SOLANA",
+                        "signerAddress": "Dz93pUVjXuaMnSsPSn7V99V4cUzhKoQdx9ECwZJZiafG"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

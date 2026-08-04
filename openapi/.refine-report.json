@@ -1,0 +1,22 @@
+{
+  "provider": "layerzero",
+  "sources": [
+    "layerzero-discovery-api-openapi.yml",
+    "layerzero-messages-api-openapi.yml",
+    "layerzero-ofts-api-openapi.yml",
+    "layerzero-openapi-api-openapi.yml",
+    "layerzero-transfer-api-openapi.yml"
+  ],
+  "outputs": [
+    "layerzero-discovery-api-openapi.yml",
+    "layerzero-messages-api-openapi.yml",
+    "layerzero-ofts-api-openapi.yml",
+    "layerzero-openapi-api-openapi.yml",
+    "layerzero-transfer-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
