@@ -149,6 +149,10 @@ apis:
   - type: Authentication
     url: https://docs.layerzero.network/v2/tools/api/oft-reference
 common:
+  - type: IssueTracker
+    url: https://github.com/LayerZero-Labs/devtools/issues
+  - type: Releases
+    url: https://github.com/LayerZero-Labs/devtools/releases
   - type: AgenticAccess
     url: agentic-access/layerzero-agentic-access.yml
   - type: DomainSecurity
