@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LayerZero OFT Transfer Discovery openapi API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "openapi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /openapi",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/openapi"
+          },
+          "docs": "OpenAPI specs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

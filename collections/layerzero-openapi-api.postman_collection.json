@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "8c6ab10f-bc2e-4937-bb20-11d124e7991d",
+      "name": "openapi",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b74561a-6611-4b29-a9c2-9ae9279c0bcf",
+          "name": "OpenAPI specs.",
+          "request": {
+            "name": "OpenAPI specs.",
+            "description": {
+              "content": "OpenAPI specs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openapi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43c8c64d-ce63-4f59-9bef-805d026e2a88",
+              "name": "200 OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openapi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"openapi\": \"3.0.3\",\n  \"info\": {\n    \"title\": \"Scan API\",\n    \"version\": \"1.0.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://metadata.layerzero-api.com/v1/metadata/experiment/ofts\"\n    },\n    {\n      \"url\": \"https://metadata.layerzero-api.com/v1/metadata/experiment/ofts\"\n    }\n  ],\n  \"paths\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8c76fd51-abcf-49b2-94ee-57a80c715eef",
+    "name": "LayerZero OFT Transfer Discovery openapi API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for LayerZero Omnichain Fungible Tokens (OFTs)",
+      "type": "text/plain"
+    }
+  }
+}

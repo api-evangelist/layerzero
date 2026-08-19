@@ -1,0 +1,328 @@
+{
+  "item": [
+    {
+      "id": "15a309dd-5948-4975-95de-6c7bdd7e90d5",
+      "name": "ofts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0e510b1e-75f0-41b5-abf9-89fc5762f2a1",
+          "name": "Get list of available OFTs with their deployments across chains",
+          "request": {
+            "name": "Get list of available OFTs with their deployments across chains",
+            "description": {
+              "content": "Get list of available OFTs with their deployments across chains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "chainNames",
+                  "value": "<string>",
+                  "description": "Comma-separated list of chain names to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "symbols",
+                  "value": "<string>",
+                  "description": "Comma-separated list of token symbols to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "protocols",
+                  "value": "<string>",
+                  "description": "Comma-separated list of protocol names to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "contractAddresses",
+                  "value": "<string>",
+                  "description": "Comma-separated list of contract addresses to filter by"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "270f8221-7d15-4b1c-9d45-6c5beec4ab1b",
+              "name": "Successfully retrieved OFT list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "chainNames",
+                      "value": "ethereum,arbitrum,optimism,base"
+                    },
+                    {
+                      "key": "symbols",
+                      "value": "ZRO,USDT0,XAUT0,WBTC"
+                    },
+                    {
+                      "key": "protocols",
+                      "value": "wBTC,ZRO Token,USDT0"
+                    },
+                    {
+                      "key": "contractAddresses",
+                      "value": "0x6985884c4392d348587b19cb9eaaf157f13271cd,0x6c96de32cea08842dcc4058c14d3aaad7fa41dee"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ZRO\": [\n    {\n      \"name\": \"ZRO Token\",\n      \"sharedDecimals\": 6,\n      \"endpointVersion\": \"v2\",\n      \"deployments\": {\n        \"ethereum\": {\n          \"address\": \"0x6985884c4392d348587b19cb9eaaf157f13271cd\",\n          \"localDecimals\": 18,\n          \"type\": \"OFT\"\n        },\n        \"arbitrum\": {\n          \"address\": \"0x6985884c4392d348587b19cb9eaaf157f13271cd\",\n          \"localDecimals\": 18,\n          \"type\": \"OFT\"\n        },\n        \"optimism\": {\n          \"address\": \"0x6985884c4392d348587b19cb9eaaf157f13271cd\",\n          \"localDecimals\": 18,\n          \"type\": \"OFT\"\n        },\n        \"base\": {\n          \"address\": \"0x6985884c4392d348587b19cb9eaaf157f13271cd\",\n          \"localDecimals\": 18,\n          \"type\": \"OFT\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06938aee-5679-4a99-8728-c4b3188baffc",
+          "name": "Create an OFT transfer transaction between chains",
+          "request": {
+            "name": "Create an OFT transfer transaction between chains",
+            "description": {
+              "content": "Create an OFT transfer transaction between chains",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "srcChainName",
+                  "value": "<string>",
+                  "description": "(Required) Source chain name where the OFT transfer originates"
+                },
+                {
+                  "disabled": false,
+                  "key": "dstChainName",
+                  "value": "<string>",
+                  "description": "(Required) Destination chain name where the OFT will be received"
+                },
+                {
+                  "disabled": false,
+                  "key": "oftAddress",
+                  "value": "<string>",
+                  "description": "(Required) Address of the OFT contract on the source chain"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<string>",
+                  "description": "(Required) Amount to transfer in the smallest unit (wei/satoshi equivalent)"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) Address of the sender wallet"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Address of the recipient wallet (EVM hex or Solana base58)"
+                },
+                {
+                  "disabled": false,
+                  "key": "validate",
+                  "value": "<boolean>",
+                  "description": "Whether to validate balances before creating transaction"
+                },
+                {
+                  "disabled": false,
+                  "key": "options",
+                  "value": "<string>",
+                  "description": "Structured LayerZero execution options as JSON string. EXECUTOR OPTIONS: - lzReceive: Set gas limit and optional native drop for lzReceive execution - nativeDrops: Array of native token drops to specific addresses - composeOptions: Array of compose message execution settings with gas and native drop All numeric values for gas limits and native drops should be strings or numbers. Native drop amounts are in wei (e.g., \"1000000000000000\" = 0.001 ETH)."
+                },
+                {
+                  "disabled": false,
+                  "key": "composeMsg",
+                  "value": "<string>",
+                  "description": "Compose message for advanced OFT operations (hex encoded)"
+                },
+                {
+                  "disabled": false,
+                  "key": "oftCmd",
+                  "value": "<string>",
+                  "description": "OFT command for advanced operations (hex encoded)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "LayerZero API key for authentication",
+                "key": "x-layerzero-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8ead0b6-9195-4410-ac0b-e6b28a8d43ff",
+              "name": "Successfully created OFT transfer transaction",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "srcChainName",
+                      "value": "ethereum"
+                    },
+                    {
+                      "key": "dstChainName",
+                      "value": "bera"
+                    },
+                    {
+                      "key": "oftAddress",
+                      "value": "0x6c96de32cea08842dcc4058c14d3aaad7fa41dee"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "1000000"
+                    },
+                    {
+                      "key": "from",
+                      "value": "0xd8538FA8FDd5872E68c4040449F64452ae536fA6"
+                    },
+                    {
+                      "key": "to",
+                      "value": "0xd8538FA8FDd5872E68c4040449F64452ae536fA6"
+                    },
+                    {
+                      "key": "validate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "options",
+                      "value": "{\"executor\":{\"lzReceive\":{\"gasLimit\":300000},\"nativeDrops\":[{\"amount\":\"1\",\"receiver\":\"0xd8538fa8fdd5872e68c4040449f64452ae536fa6\"}]}}"
+                    },
+                    {
+                      "key": "composeMsg",
+                      "value": "0x"
+                    },
+                    {
+                      "key": "oftCmd",
+                      "value": "0x"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "LayerZero API key for authentication",
+                    "key": "x-layerzero-api-key",
+                    "value": "c017d03d-5860-4b33-aeff-92e7bccb5d87"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created\": 6263.459160635268,\n  \"dstChainName\": \"string\",\n  \"transactionData\": {\n    \"populatedTransaction\": {\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"nonce\": 3661.8557042250645,\n      \"gasLimit\": \"string\",\n      \"gasPrice\": \"string\",\n      \"data\": \"string\",\n      \"value\": \"string\",\n      \"chainId\": 6403.337690144292,\n      \"type\": 5974.081614573706,\n      \"accessList\": \"\",\n      \"maxPriorityFeePerGas\": \"string\",\n      \"maxFeePerGas\": \"string\",\n      \"customData\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"ccipReadEnabled\": true\n    },\n    \"inflightTransactions\": [\n      {\n        \"txHash\": \"string\",\n        \"txType\": 0,\n        \"signedTransaction\": \"string\",\n        \"gasPrice\": \"string\",\n        \"maxPriorityFeePerGas\": \"string\",\n        \"maxFeePerGas\": \"string\"\n      },\n      {\n        \"txHash\": \"string\",\n        \"txType\": 0,\n        \"signedTransaction\": \"string\",\n        \"gasPrice\": \"string\",\n        \"maxPriorityFeePerGas\": \"string\",\n        \"maxFeePerGas\": \"string\"\n      }\n    ],\n    \"minedTransactionHash\": \"string\",\n    \"minedTransactionHashes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"txHash\": \"string\",\n    \"signedTransaction\": \"string\",\n    \"burnNonceTxIndex\": 5498.885615566749,\n    \"approvalTransaction\": {\n      \"to\": \"string\",\n      \"from\": \"string\",\n      \"nonce\": 3085.1492380436507,\n      \"gasLimit\": \"string\",\n      \"gasPrice\": \"string\",\n      \"data\": \"string\",\n      \"value\": \"string\",\n      \"chainId\": 1223.9967698250164,\n      \"type\": 8620.551865250232,\n      \"accessList\": \"\",\n      \"maxPriorityFeePerGas\": \"string\",\n      \"maxFeePerGas\": \"string\",\n      \"customData\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"ccipReadEnabled\": false\n    }\n  },\n  \"wallet\": {\n    \"address\": \"string\",\n    \"nonce\": 9143.349183659044,\n    \"success\": true,\n    \"name\": \"string\"\n  },\n  \"dstTxError\": \"string\",\n  \"nextInlineSince\": 9951.576338815015,\n  \"transactionType\": \"string\",\n  \"metadata\": {\n    \"properties\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    \"remoteChainName\": \"string\",\n    \"timestamps\": {\n      \"created\": 8461.35821218064,\n      \"nonceAcquired\": 4459.328874801659,\n      \"signed\": 6028.857659879451,\n      \"sent\": 4133.479911689777,\n      \"mined\": {\n        \"serverTs\": 7015.037810617674,\n        \"blockTs\": 7628.7232832684085,\n        \"blockNum\": 28.770533018082077\n      },\n      \"confirmed\": 4757.028869278412\n    },\n    \"sendCount\": 1135.96722363138\n  },\n  \"parallelizingKey\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "29753a90-9d8f-4b23-967a-ffca191b1807",
+    "name": "LayerZero OFT Transfer Discovery ofts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for LayerZero Omnichain Fungible Tokens (OFTs)",
+      "type": "text/plain"
+    }
+  }
+}

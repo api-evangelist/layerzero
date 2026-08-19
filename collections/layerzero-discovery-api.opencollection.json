@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LayerZero OFT Transfer Discovery API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List supported tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/tokens",
+            "params": [
+              {
+                "name": "transferrableFromChainKey",
+                "value": "",
+                "type": "query",
+                "description": "Filter tokens by source chain (for example, 'ethereum', 'arbitrum')"
+              },
+              {
+                "name": "transferrableFromTokenAddress",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source token address"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of tokens supported by the Value Transfer API. Use optional filters to narrow down results by chain or source token."
+        },
+        {
+          "info": {
+            "name": "List supported chains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/chains"
+          },
+          "docs": "Returns all chains supported by the Value Transfer API, including chain type and native currency information."
+        },
+        {
+          "info": {
+            "name": "Get deployment metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/metadata"
+          },
+          "docs": "Returns deployment addresses for multicall and transfer delegate contracts by chain. Use this to look up the correct contract addresses for building transactions or verifying approvals."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,401 @@
+{
+  "item": [
+    {
+      "id": "9ef453c5-6c1a-429f-8554-98779c6fbc82",
+      "name": "Transfer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46c412fd-403f-4723-964e-50fdc596ca75",
+          "name": "Get transfer quotes",
+          "request": {
+            "name": "Get transfer quotes",
+            "description": {
+              "content": "Request quotes for a cross-chain transfer. Returns one or more quotes with fees, estimated duration, and transaction steps to execute.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"srcChainKey\": \"<string>\",\n  \"dstChainKey\": \"<string>\",\n  \"srcTokenAddress\": \"<string>\",\n  \"dstTokenAddress\": \"<string>\",\n  \"srcWalletAddress\": \"<string>\",\n  \"dstWalletAddress\": \"<string>\",\n  \"amount\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11810e3a-848e-412b-bf38-b7c5012d6d19",
+              "name": "Successfully retrieved quotes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"srcChainKey\": \"base\",\n  \"dstChainKey\": \"optimism\",\n  \"srcTokenAddress\": \"0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE\",\n  \"dstTokenAddress\": \"0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE\",\n  \"srcWalletAddress\": \"0x1234567890123456789012345678901234567890\",\n  \"dstWalletAddress\": \"0x1234567890123456789012345678901234567890\",\n  \"amount\": \"100000000000000000\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"quotes\": [\n    {\n      \"feeUsd\": \"0.50\",\n      \"feePercent\": \"0.5\",\n      \"srcAmount\": \"100000000000000000\",\n      \"dstAmount\": \"99500000000000000\",\n      \"routeSteps\": [\n        {\n          \"type\": \"STARGATE_V2_TAXI\",\n          \"srcChainKey\": \"base\"\n        }\n      ],\n      \"userSteps\": [\n        {\n          \"type\": \"TRANSACTION\",\n          \"chainKey\": \"base\",\n          \"chainType\": \"EVM\"\n        }\n      ]\n    }\n  ],\n  \"tokens\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5be09e88-db22-4a44-bb4d-fd8cb227d982",
+          "name": "Check transfer status",
+          "request": {
+            "name": "Check transfer status",
+            "description": {
+              "content": "Check the current status of a transfer. Returns the status and an optional LayerZero Scan explorer URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status",
+                ":quoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "txHash",
+                  "value": "<string>",
+                  "description": "Optional transaction hash for faster status lookup"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) The quote ID from the /quotes response"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "db7035f0-ae6b-4e96-b903-6bec58ac1ec2",
+              "name": "Successfully retrieved status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "txHash",
+                      "value": "0x..."
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) The quote ID from the /quotes response"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"SUCCEEDED\",\n  \"explorerUrl\": \"https://layerzeroscan.com/tx/...\",\n  \"executionHistory\": [\n    {\n      \"event\": \"SENT\",\n      \"transaction\": {\n        \"chainKey\": \"base\",\n        \"hash\": \"0x...\"\n      }\n    },\n    {\n      \"event\": \"DELIVERED\",\n      \"transaction\": {\n        \"chainKey\": \"optimism\",\n        \"hash\": \"0x...\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49216805-edde-4d9f-8536-8bf821fb5503",
+          "name": "Submit EIP-712 signatures",
+          "request": {
+            "name": "Submit EIP-712 signatures",
+            "description": {
+              "content": "Submit signed EIP-712 messages for intent-based transfers (for example, Aori routes). Required when a quote includes SIGNATURE user steps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "submit-signature"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\",\n  \"signatures\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e7c093ec-9d71-435f-a328-f5a983d52633",
+              "name": "Signature submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "submit-signature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"quote_abc123\",\n  \"signatures\": [\n    \"0x...\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe04643b-0f1f-4bb0-ad80-2a7704a13717",
+          "name": "Build transaction steps",
+          "request": {
+            "name": "Build transaction steps",
+            "description": {
+              "content": "Rebuild or refresh the user steps for a quote. Use this if the original quote's user steps have expired or if you need fresh transaction data (required for Solana).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "build-user-steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a4425cb-6893-4342-921d-5686f7027f8e",
+              "name": "Successfully built user steps",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "build-user-steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"quote_abc123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userSteps\": [\n    {\n      \"type\": \"TRANSACTION\",\n      \"description\": \"bridge\",\n      \"chainKey\": \"solana\",\n      \"chainType\": \"SOLANA\",\n      \"signerAddress\": \"Dz93pUVjXuaMnSsPSn7V99V4cUzhKoQdx9ECwZJZiafG\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3f57004b-9cc0-450f-bb1f-1cbbdc0d9dbb",
+    "name": "LayerZero OFT Discovery Transfer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for LayerZero Omnichain Fungible Tokens (OFTs)",
+      "type": "text/plain"
+    }
+  }
+}

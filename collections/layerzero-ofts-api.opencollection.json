@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LayerZero OFT Transfer Discovery ofts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ofts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/list",
+            "params": [
+              {
+                "name": "chainNames",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of chain names to filter by"
+              },
+              {
+                "name": "symbols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of token symbols to filter by"
+              },
+              {
+                "name": "protocols",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of protocol names to filter by"
+              },
+              {
+                "name": "contractAddresses",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of contract addresses to filter by"
+              }
+            ]
+          },
+          "docs": "Get list of available OFTs with their deployments across chains"
+        },
+        {
+          "info": {
+            "name": "GET /transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/transfer",
+            "headers": [
+              {
+                "name": "x-layerzero-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "srcChainName",
+                "value": "",
+                "type": "query",
+                "description": "Source chain name where the OFT transfer originates"
+              },
+              {
+                "name": "dstChainName",
+                "value": "",
+                "type": "query",
+                "description": "Destination chain name where the OFT will be received"
+              },
+              {
+                "name": "oftAddress",
+                "value": "",
+                "type": "query",
+                "description": "Address of the OFT contract on the source chain"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "Amount to transfer in the smallest unit (wei/satoshi equivalent)"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Address of the sender wallet"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Address of the recipient wallet (EVM hex or Solana base58)"
+              },
+              {
+                "name": "validate",
+                "value": "",
+                "type": "query",
+                "description": "Whether to validate balances before creating transaction"
+              },
+              {
+                "name": "options",
+                "value": "",
+                "type": "query",
+                "description": "Structured LayerZero execution options as JSON string. EXECUTOR OPTIONS: - lzReceive: Set gas limit and optional native drop for lzReceive execution - nativeDrops: Array of native token drops to specific addresses - composeOptions: Array of compose message execution settings with gas and native drop All numeric values for gas limits and native drops should be strings or numbers. Native drop amounts are in wei (e.g., \"1000000000000000\" = 0.001 ETH)."
+              },
+              {
+                "name": "composeMsg",
+                "value": "",
+                "type": "query",
+                "description": "Compose message for advanced OFT operations (hex encoded)"
+              },
+              {
+                "name": "oftCmd",
+                "value": "",
+                "type": "query",
+                "description": "OFT command for advanced operations (hex encoded)"
+              }
+            ]
+          },
+          "docs": "Create an OFT transfer transaction between chains"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

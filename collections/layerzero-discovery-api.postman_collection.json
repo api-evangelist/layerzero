@@ -1,0 +1,264 @@
+{
+  "item": [
+    {
+      "id": "c0dea742-875a-4085-9988-99fbcabfa2c7",
+      "name": "Discovery",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9478261d-aa8f-4519-9dc0-ef53cdd85a12",
+          "name": "List supported tokens",
+          "request": {
+            "name": "List supported tokens",
+            "description": {
+              "content": "Returns a paginated list of tokens supported by the Value Transfer API. Use optional filters to narrow down results by chain or source token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "transferrableFromChainKey",
+                  "value": "<string>",
+                  "description": "Filter tokens by source chain (for example, 'ethereum', 'arbitrum')"
+                },
+                {
+                  "disabled": false,
+                  "key": "transferrableFromTokenAddress",
+                  "value": "<string>",
+                  "description": "Filter by source token address"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92dbd966-a54a-427f-befd-c1511a02df6a",
+              "name": "Successfully retrieved token list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "transferrableFromChainKey",
+                      "value": "ethereum"
+                    },
+                    {
+                      "key": "transferrableFromTokenAddress",
+                      "value": "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": [\n    {\n      \"isSupported\": true,\n      \"chainKey\": \"ethereum\",\n      \"address\": \"0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE\",\n      \"decimals\": 18,\n      \"symbol\": \"ETH\",\n      \"name\": \"Ethereum\"\n    }\n  ],\n  \"pagination\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89d536a9-128d-4461-a155-5526233b9204",
+          "name": "List supported chains",
+          "request": {
+            "name": "List supported chains",
+            "description": {
+              "content": "Returns all chains supported by the Value Transfer API, including chain type and native currency information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chains"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0373788a-ff03-40d6-acc4-82b9cde1c990",
+              "name": "Successfully retrieved chain list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chains"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"chains\": [\n    {\n      \"name\": \"string\",\n      \"shortName\": \"string\",\n      \"chainKey\": \"string\",\n      \"chainType\": \"string\",\n      \"chainId\": 5743.9541236769865\n    },\n    {\n      \"name\": \"string\",\n      \"shortName\": \"string\",\n      \"chainKey\": \"string\",\n      \"chainType\": \"string\",\n      \"chainId\": 4953.727789125341\n    }\n  ],\n  \"pagination\": {\n    \"nextToken\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6eb8ccd1-a80b-4097-be5b-ccfdbcb9d73b",
+          "name": "Get deployment metadata",
+          "request": {
+            "name": "Get deployment metadata",
+            "description": {
+              "content": "Returns deployment addresses for multicall and transfer delegate contracts by chain. Use this to look up the correct contract addresses for building transactions or verifying approvals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1f80c22-e019-4465-bf41-f2f53ae5d78f",
+              "name": "Successfully retrieved deployment metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"base\": {\n    \"deployments\": {\n      \"multicall\": {\n        \"address\": \"0x0564F89f6edf2cA62fBd174378f9187e447DD410\"\n      },\n      \"transferDelegate\": {\n        \"address\": \"0xf45722F37f602c0788Beb7C1471ebEB281308860\"\n      }\n    }\n  },\n  \"ethereum\": {\n    \"deployments\": {\n      \"multicall\": {\n        \"address\": \"0xFD268A4813005A9fb04982073E5f4916f8653B75\"\n      },\n      \"transferDelegate\": {\n        \"address\": \"0x0CD0aD832f06b05f8fE78E6DB825c3d4eA944004\"\n      }\n    }\n  },\n  \"arbitrum\": {\n    \"deployments\": {\n      \"multicall\": {\n        \"address\": \"0x26F97eb05469fF5d2169FD4d83cF96939C9B8e37\"\n      },\n      \"transferDelegate\": {\n        \"address\": \"0x43093Bb72d982C04DFb858Fd31a85fBcB6c13CBD\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e9998a08-dc45-4b27-af09-c0df548273d6",
+    "name": "LayerZero OFT Transfer Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for LayerZero Omnichain Fungible Tokens (OFTs)",
+      "type": "text/plain"
+    }
+  }
+}

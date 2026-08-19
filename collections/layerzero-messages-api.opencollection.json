@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LayerZero OFT Transfer Discovery messages API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /messages/latest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/latest",
+            "params": [
+              {
+                "name": "ulnVersion",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to be passed for retrieving the next set of paginated results"
+              }
+            ]
+          },
+          "docs": "Get latest messages"
+        },
+        {
+          "info": {
+            "name": "GET /messages/pathway/{pathwayId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/pathway/:pathwayId",
+            "params": [
+              {
+                "name": "pathwayId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to be passed for retrieving the next set of paginated results"
+              }
+            ]
+          },
+          "docs": "Get messages by pathway."
+        },
+        {
+          "info": {
+            "name": "GET /messages/tx/{tx}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/tx/:tx",
+            "params": [
+              {
+                "name": "tx",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get messages by transaction hash."
+        },
+        {
+          "info": {
+            "name": "GET /messages/status/{status}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/status/:status",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to be passed for retrieving the next set of paginated results"
+              }
+            ]
+          },
+          "docs": "Get messages by status."
+        },
+        {
+          "info": {
+            "name": "GET /messages/oapp/{eid}/{address}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/oapp/:eid/:address",
+            "params": [
+              {
+                "name": "eid",
+                "value": "",
+                "type": "path",
+                "description": "LayerZero Endpoint ID"
+              },
+              {
+                "name": "address",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to be passed for retrieving the next set of paginated results"
+              }
+            ]
+          },
+          "docs": "Get messages by endpoint id and oapp address."
+        },
+        {
+          "info": {
+            "name": "GET /messages/guid/{guid}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/guid/:guid",
+            "params": [
+              {
+                "name": "guid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get messages by guid."
+        },
+        {
+          "info": {
+            "name": "GET /messages/wallet/{srcAddress}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/messages/wallet/:srcAddress",
+            "params": [
+              {
+                "name": "srcAddress",
+                "value": "",
+                "type": "path",
+                "description": "The address initiating the message on the source chain."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "The token to be passed for retrieving the next set of paginated results"
+              }
+            ]
+          },
+          "docs": "Get messages by the wallet address the message originated from."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

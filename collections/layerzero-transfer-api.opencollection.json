@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LayerZero OFT Discovery Transfer API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get transfer quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/quotes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request quotes for a cross-chain transfer. Returns one or more quotes with fees, estimated duration, and transaction steps to execute."
+        },
+        {
+          "info": {
+            "name": "Check transfer status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/status/:quoteId",
+            "params": [
+              {
+                "name": "quoteId",
+                "value": "",
+                "type": "path",
+                "description": "The quote ID from the /quotes response"
+              },
+              {
+                "name": "txHash",
+                "value": "",
+                "type": "query",
+                "description": "Optional transaction hash for faster status lookup"
+              }
+            ]
+          },
+          "docs": "Check the current status of a transfer. Returns the status and an optional LayerZero Scan explorer URL."
+        },
+        {
+          "info": {
+            "name": "Submit EIP-712 signatures",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/submit-signature",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit signed EIP-712 messages for intent-based transfers (for example, Aori routes). Required when a quote includes SIGNATURE user steps."
+        },
+        {
+          "info": {
+            "name": "Build transaction steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/build-user-steps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rebuild or refresh the user steps for a quote. Use this if the original quote's user steps have expired or if you need fresh transaction data (required for Solana)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
