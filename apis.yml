@@ -58,6 +58,8 @@ apis:
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
   tags:
+  - Message
+  tags_raw:
   - messages
   properties:
   - type: OpenAPI
@@ -106,6 +108,8 @@ apis:
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
   tags:
+  - OpenAPI
+  tags_raw:
   - openapi
   properties:
   - type: OpenAPI
