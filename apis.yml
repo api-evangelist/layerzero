@@ -116,18 +116,16 @@ apis:
     url: https://docs.layerzero.network/v2/tools/api/oft-examples
   - type: Authentication
     url: https://docs.layerzero.network/v2/tools/api/oft-reference
-- aid: layerzero:layerzero-openapi-api
-  name: LayerZero openapi API
-  description: The openapi API from LayerZero — 1 operation(s) for openapi.
+- aid: layerzero:layerzero-transfer-api
+  name: LayerZero Transfer API
+  description: The Transfer API from LayerZero — 4 operation(s) for transfer.
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
   tags:
-  - OpenAPI
-  tags_raw:
-  - openapi
+  - Transfer
   properties:
   - type: OpenAPI
-    url: openapi/layerzero-openapi-api-openapi.yml
+    url: openapi/layerzero-transfer-api-openapi.yml
   - type: Documentation
     url: https://docs.layerzero.network/v2/tools/overview
   - type: Explorer
@@ -142,16 +140,16 @@ apis:
     url: https://docs.layerzero.network/v2/tools/api/oft-examples
   - type: Authentication
     url: https://docs.layerzero.network/v2/tools/api/oft-reference
-- aid: layerzero:layerzero-transfer-api
-  name: LayerZero Transfer API
-  description: The Transfer API from LayerZero — 4 operation(s) for transfer.
+- aid: layerzero:layerzero-open-api-api
+  name: LayerZero Open API
+  description: The Open API API from LayerZero — 1 operation(s) for open api.
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
   tags:
-  - Transfer
+  - Open API
   properties:
   - type: OpenAPI
-    url: openapi/layerzero-transfer-api-openapi.yml
+    url: openapi/layerzero-open-api-api-openapi.yml
   - type: Documentation
     url: https://docs.layerzero.network/v2/tools/overview
   - type: Explorer
