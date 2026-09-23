@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LayerZero OFT Transfer Discovery API
+  title: Value Transfer Discovery API
   version: 1.0.0
-  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+  description: Unified API for cross-chain value transfers across 150+ blockchains
 servers:
-- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+- url: https://transfer.layerzero-api.com/v1
 tags:
 - name: Discovery
 paths:
@@ -66,6 +66,8 @@ paths:
                     symbol: ETH
                     name: Ethereum
                   pagination: {}
+      operationId: getTokens
+      x-operation-id-source: derived
   /chains:
     get:
       summary: List supported chains
@@ -118,6 +120,8 @@ paths:
                     chainType: SOLANA
                     chainId: 0
                   pagination: {}
+      operationId: getChains
+      x-operation-id-source: derived
   /metadata:
     get:
       summary: Get deployment metadata
@@ -168,3 +172,12 @@ paths:
                         address: '0x26F97eb05469fF5d2169FD4d83cF96939C9B8e37'
                       transferDelegate:
                         address: '0x43093Bb72d982C04DFb858Fd31a85fBcB6c13CBD'
+      operationId: getMetadata
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: API key for authenticating requests. Required for /quotes, /build-user-steps, /submit-signature, and /status endpoints.

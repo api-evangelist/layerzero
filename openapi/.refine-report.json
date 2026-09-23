@@ -1,22 +1,44 @@
 {
   "provider": "layerzero",
   "sources": [
-    "layerzero-discovery-api-openapi.yml",
-    "layerzero-messages-api-openapi.yml",
-    "layerzero-ofts-api-openapi.yml",
-    "layerzero-openapi-api-openapi.yml",
-    "layerzero-transfer-api-openapi.yml"
+    "_original/oft-mainnet.json",
+    "_original/scan-mainnet.json",
+    "_original/vt-api.json"
   ],
   "outputs": [
-    "layerzero-discovery-api-openapi.yml",
-    "layerzero-messages-api-openapi.yml",
     "layerzero-ofts-api-openapi.yml",
     "layerzero-openapi-api-openapi.yml",
+    "layerzero-messages-api-openapi.yml",
+    "layerzero-discovery-api-openapi.yml",
     "layerzero-transfer-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "oft-mainnet.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "oft-mainnet.json: declared missing tag: ofts",
+    "oft-mainnet.json: declared missing tag: openapi",
+    "scan-mainnet.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "scan-mainnet.json: declared missing tag: messages",
+    "scan-mainnet.json: declared missing tag: openapi",
+    "vt-api.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "vt-api.json: declared missing tag: Discovery",
+    "vt-api.json: declared missing tag: Transfer",
+    "tag 'openapi' spans 2 source specs (oft-mainnet.json, scan-mainnet.json): per-path servers applied",
+    "superseded outputs removed: layerzero-open-api-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
+  ],
+  "skipped": [
+    "_original/scan-testnet.json: archived document superseded by a larger archived document",
+    "layerzero-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "layerzero-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "layerzero-ofts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "layerzero-open-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "layerzero-transfer-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

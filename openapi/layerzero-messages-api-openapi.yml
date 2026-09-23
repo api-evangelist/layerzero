@@ -1,18 +1,17 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LayerZero OFT Transfer Discovery messages API
+  title: LayerZero Scan Messages API
   version: 1.0.0
-  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
 servers:
-- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+- url: https://scan.layerzero-api.com/v1
 tags:
-- name: messages
+- name: Messages
 paths:
   /messages/latest:
     get:
       description: Get latest messages
       tags:
-      - messages
+      - Messages
       parameters:
       - in: query
         name: ulnVersion
@@ -369,8 +368,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -421,8 +421,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -557,11 +558,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -607,11 +610,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -710,11 +715,15 @@ paths:
                     description: The token to be passed for retrieving the next set of paginated results
                 required:
                 - data
+      summary: Get messages latest
+      x-summary-source: derived
+      operationId: getMessagesLatest
+      x-operation-id-source: derived
   /messages/pathway/{pathwayId}:
     get:
       description: Get messages by pathway.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: pathwayId
@@ -1094,8 +1103,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -1146,8 +1156,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -1282,11 +1293,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -1332,11 +1345,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -1435,11 +1450,15 @@ paths:
                     description: The token to be passed for retrieving the next set of paginated results
                 required:
                 - data
+      summary: Get messages pathway by pathway id
+      x-summary-source: derived
+      operationId: getMessagesPathwayByPathwayId
+      x-operation-id-source: derived
   /messages/tx/{tx}:
     get:
       description: Get messages by transaction hash.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: tx
@@ -1766,8 +1785,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -1818,8 +1838,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -1954,11 +1975,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -2004,11 +2027,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -2104,11 +2129,15 @@ paths:
                           default: '2025-05-27T19:20:54.365Z'
                 required:
                 - data
+      summary: Get messages tx by tx
+      x-summary-source: derived
+      operationId: getMessagesTxByTx
+      x-operation-id-source: derived
   /messages/status/{status}:
     get:
       description: Get messages by status.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: status
@@ -2476,8 +2505,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -2528,8 +2558,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -2664,11 +2695,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -2714,11 +2747,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -2814,11 +2849,15 @@ paths:
                           default: '2025-05-27T19:20:54.365Z'
                 required:
                 - data
+      summary: Get messages status by status
+      x-summary-source: derived
+      operationId: getMessagesStatusByStatus
+      x-operation-id-source: derived
   /messages/oapp/{eid}/{address}:
     get:
       description: Get messages by endpoint id and oapp address.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: eid
@@ -3186,8 +3225,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -3238,8 +3278,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -3374,11 +3415,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -3424,11 +3467,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -3527,11 +3572,15 @@ paths:
                     description: The token to be passed for retrieving the next set of paginated results
                 required:
                 - data
+      summary: Get messages oapp by eid by address
+      x-summary-source: derived
+      operationId: getMessagesOappByEidByAddress
+      x-operation-id-source: derived
   /messages/guid/{guid}:
     get:
       description: Get messages by guid.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: guid
@@ -3857,8 +3906,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -3909,8 +3959,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -4045,11 +4096,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -4095,11 +4148,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -4195,11 +4250,15 @@ paths:
                           default: '2025-05-27T19:20:54.369Z'
                 required:
                 - data
+      summary: Get messages guid by guid
+      x-summary-source: derived
+      operationId: getMessagesGuidByGuid
+      x-operation-id-source: derived
   /messages/wallet/{srcAddress}:
     get:
       description: Get messages by the wallet address the message originated from.
       tags:
-      - messages
+      - Messages
       parameters:
       - in: path
         name: srcAddress
@@ -4559,8 +4618,9 @@ paths:
                                         index:
                                           type: number
                                         revertReason:
-                                          type: string
-                                          nullable: true
+                                          type:
+                                          - string
+                                          - 'null'
                                   status:
                                     anyOf:
                                     - type: string
@@ -4611,8 +4671,9 @@ paths:
                                     blockNumber:
                                       type: number
                                     revertReason:
-                                      type: string
-                                      nullable: true
+                                      type:
+                                      - string
+                                      - 'null'
                               status:
                                 anyOf:
                                 - type: string
@@ -4747,11 +4808,13 @@ paths:
                             dvnConfigError:
                               type: boolean
                             receiveLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             sendLibrary:
-                              type: string
-                              nullable: true
+                              type:
+                              - string
+                              - 'null'
                             inboundConfig:
                               anyOf:
                               - type: object
@@ -4797,11 +4860,13 @@ paths:
                                   utilsVersion:
                                     type: number
                                   proofVersion:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   proofLibraryAddress:
-                                    type: string
-                                    nullable: true
+                                    type:
+                                    - string
+                                    - 'null'
                                   ulnVersion:
                                     type: string
                                     enum:
@@ -4900,3 +4965,7 @@ paths:
                     description: The token to be passed for retrieving the next set of paginated results
                 required:
                 - data
+      summary: Get messages wallet by src address
+      x-summary-source: derived
+      operationId: getMessagesWalletBySrcAddress
+      x-operation-id-source: derived

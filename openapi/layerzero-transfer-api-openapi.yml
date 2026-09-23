@@ -1,10 +1,10 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LayerZero OFT Discovery Transfer API
+  title: Value Transfer API
   version: 1.0.0
-  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+  description: Unified API for cross-chain value transfers across 150+ blockchains
 servers:
-- url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+- url: https://transfer.layerzero-api.com/v1
 tags:
 - name: Transfer
 paths:
@@ -121,6 +121,8 @@ paths:
                       chainKey: base
                       chainType: EVM
                   tokens: []
+      operationId: postQuotes
+      x-operation-id-source: derived
   /status/{quoteId}:
     get:
       summary: Check transfer status
@@ -187,6 +189,8 @@ paths:
                     transaction:
                       chainKey: optimism
                       hash: 0x...
+      operationId: getStatusByQuoteId
+      x-operation-id-source: derived
   /submit-signature:
     post:
       summary: Submit EIP-712 signatures
@@ -224,6 +228,8 @@ paths:
               schema:
                 type: object
                 example: {}
+      operationId: postSubmitSignature
+      x-operation-id-source: derived
   /build-user-steps:
     post:
       summary: Build transaction steps
@@ -275,3 +281,12 @@ paths:
                     chainKey: solana
                     chainType: SOLANA
                     signerAddress: Dz93pUVjXuaMnSsPSn7V99V4cUzhKoQdx9ECwZJZiafG
+      operationId: postBuildUserSteps
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: API key for authenticating requests. Required for /quotes, /build-user-steps, /submit-signature, and /status endpoints.

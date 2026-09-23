@@ -1,18 +1,19 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: LayerZero OFT Transfer Discovery openapi API
+  title: Layerzero Openapi API
   version: 1.0.0
-  description: API for LayerZero Omnichain Fungible Tokens (OFTs)
+  description: 'Operations tagged openapi across 2 of this provider''s published API definitions: oft-mainnet.json, scan-mainnet.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+- url: https://scan.layerzero-api.com/v1
 tags:
-- name: openapi
+- name: Open API
 paths:
   /openapi:
     get:
       description: OpenAPI specs.
       tags:
-      - openapi
+      - Open API
       responses:
         '200':
           description: 200 OK
@@ -57,3 +58,12 @@ paths:
                 required:
                 - openapi
                 - info
+      summary: Get openapi
+      x-summary-source: derived
+      operationId: getOpenapi
+      x-operation-id-source: derived
+    servers:
+    - url: https://metadata.layerzero-api.com/v1/metadata/experiment/ofts
+x-refined-from:
+- oft-mainnet.json
+- scan-mainnet.json
