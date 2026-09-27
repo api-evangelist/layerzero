@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Layerzero Openapi API
+  title: Layerzero OpenAPI API
   version: 1.0.0
   description: 'Operations tagged openapi across 2 of this provider''s published API definitions: oft-mainnet.json, scan-mainnet.json. Each path carries the servers of the definition it was published in.'
 servers:

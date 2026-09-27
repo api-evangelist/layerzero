@@ -1,17 +1,20 @@
 name: LayerZero
 description: LayerZero is an omnichain interoperability protocol that enables seamless cross-chain messaging, token transfers, and OApp/OFT deployments across 90+ blockchains. It provides REST APIs for querying cross-chain message status, estimating fees, tracking OFT deployments, and executing value transfers across 150+ supported chains.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - layerzero-labs/devtools
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -67,7 +70,7 @@ apis:
   - type: Authentication
     url: https://docs.layerzero.network/v2/tools/api/oft-reference
 - aid: layerzero:layerzero-messages-api
-  name: LayerZero messages API
+  name: LayerZero Messages API
   description: The messages API from LayerZero — 7 operation(s) for messages.
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
@@ -93,7 +96,7 @@ apis:
   - type: Authentication
     url: https://docs.layerzero.network/v2/tools/api/oft-reference
 - aid: layerzero:layerzero-ofts-api
-  name: LayerZero ofts API
+  name: LayerZero Ofts API
   description: The ofts API from LayerZero — 2 operation(s) for ofts.
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
@@ -146,8 +149,6 @@ apis:
   humanURL: https://docs.layerzero.network/v2/tools/api/scan/mainnet
   baseURL: https://scan.layerzero-api.com/v1
   tags:
-  - OpenAPI
-  tags_raw:
   - Open API
   properties:
   - type: OpenAPI
