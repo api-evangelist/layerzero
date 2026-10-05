@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.layerzero.network/openapi/oft-mainnet.json",
+ "requested_url": "https://docs.layerzero.network/openapi/oft-mainnet.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 26834,
+ "sha256": "f8ead18d3fa36b8cbbb25f72d9b7a563f27ac54be9075b63b933795618bde3c9",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
