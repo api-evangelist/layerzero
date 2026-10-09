@@ -1,3 +1,12 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+# Coverage demoted 2026-10-07 (roadmap#942, PLAN.md Stage A): this file was written by an API Evangelist
+# sweep and names no billing unit, meters or pricing category read from the provider — it restates the
+# FinOps framework. It is `x-coverage: unmeasured`, and the FOCUS alignment it claimed has been removed.
+x-coverage: unmeasured
+method: generated
+generated: '2026-06-13'
 name: LayerZero API FinOps
 description: LayerZero does not charge fees for REST API access to its Scan and Value Transfer APIs. The primary cost model for LayerZero is protocol-level messaging fees paid on-chain when sending cross-chain messages or OFT transfers. These fees consist of native gas costs on the source chain, DVN (Decentralized Verifier Network) fees, and executor fees for message delivery on the destination chain. Fee estimation is available via the quoteSend and quote functions on LayerZero Endpoint smart contracts, and through the /quotes endpoint of the Value Transfer REST API.
 url: https://docs.layerzero.network/v2/developers/evm/configuration/gas-fees

@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: LayerZero API Plans
 description: LayerZero provides its core Scan API (message tracking) and chain/token discovery endpoints of the Value Transfer API without authentication. Production use of quote generation, transfer execution, and OFT transfer endpoints requires an API key obtained directly from the LayerZero team. There are no publicly documented paid tiers — access is provisioned on a per-project basis.
 url: https://layerzero.network/
@@ -35,3 +40,23 @@ plans:
       - GET https://metadata.layerzero-api.com/v1/metadata/experiment/ofts/transfer
     authentication: API Key via x-api-key or x-layerzero-api-key header
     contact: https://discord.gg/layerzero
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Free (No Auth)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: API Key Access
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
