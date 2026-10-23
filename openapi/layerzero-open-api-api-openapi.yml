@@ -67,3 +67,9 @@ paths:
 x-refined-from:
 - oft-mainnet.json
 - scan-mainnet.json
+x-provenance:
+  method: harvested
+  publisher: LayerZero
+  source: https://docs.layerzero.network/openapi/scan-mainnet.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
