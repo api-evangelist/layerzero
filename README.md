@@ -64,30 +64,137 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-LayerZero is an omnichain interoperability protocol enabling seamless cross-chain messaging, token transfers, and decentralized application deployments across 90+ blockchains. It provides REST APIs for querying cross-chain message status, estimating transfer fees, tracking OFT deployments, and executing value transfers across 150+ supported chains.
+LayerZero is an omnichain interoperability protocol that enables seamless cross-chain messaging, token transfers, and OApp/OFT deployments across 90+ blockchains. It provides REST APIs for querying cross-chain message status, estimating fees, tracking OFT deployments, and executing value transfers across 150+ supported chains.
 
-## APIs
+**Areas:** Blockchain · Cross-Chain · Omnichain · Interoperability · Web3 · DeFi · Messaging · Token Transfers
 
-| API | Base URL | Auth |
-|-----|----------|------|
-| Scan API (Mainnet) | https://scan.layerzero-api.com/v1 | None |
-| Scan API (Testnet) | https://scan-testnet.layerzero-api.com/v1 | None |
-| Value Transfer API | https://transfer.layerzero-api.com/v1 | API Key (some endpoints) |
-| OFT Transfer API | https://metadata.layerzero-api.com/v1/metadata/experiment/ofts | API Key |
+## LayerZero on APIs.io
 
-## Resources
+Everything profiled for LayerZero is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/layerzero/](https://apis.io/providers/layerzero/)** — or go straight to one of the APIs or properties below.
 
+### APIs (5)
+
+- [LayerZero Discovery API](https://apis.io/apis/layerzero/layerzero-discovery-api/) — The Discovery API from LayerZero — 3 operation(s) for discovery.
+- [LayerZero Messages API](https://apis.io/apis/layerzero/layerzero-messages-api/) — The messages API from LayerZero — 7 operation(s) for messages.
+- [LayerZero Ofts API](https://apis.io/apis/layerzero/layerzero-ofts-api/) — The ofts API from LayerZero — 2 operation(s) for ofts.
+- [LayerZero Transfer API](https://apis.io/apis/layerzero/layerzero-transfer-api/) — The Transfer API from LayerZero — 4 operation(s) for transfer.
+- [LayerZero Open API](https://apis.io/apis/layerzero/layerzero-open-api-api/) — The Open API API from LayerZero — 1 operation(s) for open api.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [layerzero](https://apis.io/servers/layerzero/layerzero/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Layerzero Agentic Access](https://apis.io/agentic-access/layerzero/layerzero-agentic-access/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [context Context](https://apis.io/jsonld/layerzero/context/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [LayerZero OFT Transfer Discovery API](https://apis.io/collections/layerzero/open-layerzero-discovery-api/)
+- [LayerZero OFT Transfer Discovery messages API](https://apis.io/collections/layerzero/open-layerzero-messages-api/)
+- [LayerZero OFT Transfer Discovery ofts API](https://apis.io/collections/layerzero/open-layerzero-ofts-api/)
+- [LayerZero OFT Transfer Discovery openapi API](https://apis.io/collections/layerzero/open-layerzero-openapi-api/)
+- [LayerZero OFT Discovery Transfer API](https://apis.io/collections/layerzero/open-layerzero-transfer-api/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Layerzero Authentication](https://apis.io/security/layerzero/layerzero-authentication/)
+- [Layerzero Domain Security](https://apis.io/security/layerzero/layerzero-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/layerzero/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/layerzero/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/layerzero/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://layerzero.network/)
 - [Documentation](https://docs.layerzero.network/v2)
-- [LayerZero Scan Explorer](https://layerzeroscan.com/)
-- [GitHub](https://github.com/LayerZero-Labs)
-- [Discord](https://discord.gg/layerzero)
-- [OpenAPI - Scan Mainnet](https://docs.layerzero.network/openapi/scan-mainnet.json)
-- [OpenAPI - Value Transfer API](https://docs.layerzero.network/openapi/vt-api.json)
-- [OpenAPI - OFT API](https://docs.layerzero.network/openapi/oft-mainnet.json)
+- [Changelog](https://docs.layerzero.network/v2/developers/changelog)
+- [Blog](https://layerzero.network/blog)
 
-## Profile
+## API Evangelist rating
 
-- [apis.yml](apis.yml)
-- [Plans](plans/plans.yml)
-- [Rate Limits](rate-limits/rate-limits.yml)
-- [FinOps](finops/finops.yml)
+**Kin Score 26.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 49.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 5.3 |
+
+**Agent readiness 27.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/layerzero/](https://apis.io/providers/layerzero/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LayerZero: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/layerzero/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
